@@ -1,0 +1,14 @@
+// Aパターン
+// ※参考文献：https://qiita.com/yuta-38/items/1910bd9c1c42ff3c6f32
+$breakpoints: ('xs': 'screen and (max-width: 320px)',
+  'sm': 'screen and (max-width: 480px)',
+  'md': 'screen and (max-width: 896px)',
+  'lg': 'screen and (max-width: 1024px)',
+  'xl': 'screen and (max-width: 1440px)',
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
