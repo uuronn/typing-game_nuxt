@@ -1,19 +1,34 @@
 <template>
   <div class="start">
     <h1 class="start__title">タイピングげーむ</h1>
-    <NuxtLink to="/game/typing">
-      <button class="start__button">
-        START
-      </button>
-    </NuxtLink>
+    <div class="start__buttons">
+      <NuxtLink to="/game/typing">
+        <button class="start__button">
+          はじめる
+        </button>
+      </NuxtLink>
+      <NuxtLink to="/result/ranking">
+        <button class="start__button">
+          ランキング
+        </button>
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
 
+export default {
+  data() {
+    return {
+    }
+  },
+  methods: {
+    
+  }
 }
 </script>
+
 
 <style lang="scss" scoped>
 .start {
@@ -27,10 +42,28 @@ export default {
     font-size: 80px;
   }
 
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 500px;
+  }
+
   &__button {
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0;
     font-size: 80px;
     color: $font-main;
-    background: $ui-gray;
+    background: $ui-white;
+    transition: 0.3s;
+    width: 100%;
+
+    &:hover {
+      box-shadow: 0 0 0;
+      transition: 0.3s;
+      background: $ui-gray;
+    }
   }
 }
 </style>
