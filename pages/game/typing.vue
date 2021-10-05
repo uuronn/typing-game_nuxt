@@ -1,10 +1,10 @@
 <template>
   <div class="typing">
     <div class="typing__group">
-      <h2 class="typing__question">お題</h2>
+      <h2 class="typing__question">{{ questions[0] }}</h2>
       <p class="typing__romanAlphabet">ローマ字</p>
     </div>
-    <NuxtLink to="/" class="typing__wrapper">
+    <NuxtLink to="/" class="typing__link">
       <button class="typing__home">ホーム</button>
     </NuxtLink>
   </div>
@@ -14,11 +14,16 @@
 export default {
   data() {
     return {
+      questions: [
+        'test',
+        'apple',
+        'ppp'
+      ]
     }
-  }
+  },
+  mounted() {}
 }
 </script>
-
 
 <style lang="scss" scoped>
 .typing {
@@ -28,7 +33,7 @@ export default {
   padding: 10px;
 
   &__question {
-    margin: 40px 0 80px;
+    margin: 40px 0 10px;
     font-size: 80px;
   }
 
@@ -36,7 +41,7 @@ export default {
     font-size: 20px;
   }
 
-  &__wrapper {
+  &__link {
     position: absolute;
     z-index: 1;
     top: 0;

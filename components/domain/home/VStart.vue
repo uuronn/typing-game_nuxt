@@ -12,6 +12,11 @@
           ランキング
         </button>
       </NuxtLink>
+      <NuxtLink to="/setting/set">
+        <button class="start__button">
+          設定
+        </button>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -28,7 +33,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .start {
@@ -47,13 +51,15 @@ export default {
     flex-direction: column;
     margin: auto;
     max-width: 500px;
+    gap: 10px;
   }
 
   &__button {
+    padding: 10px 0;
     border: 2px solid #000;
     border-radius: 10px;
     box-shadow: 5px 5px 0;
-    font-size: 80px;
+    font-size: 50px;
     color: $font-main;
     background: $ui-white;
     transition: 0.3s;

@@ -1,14 +1,14 @@
 <template>
-  <div class="ranking">
-    <h2>ランキングページ</h2>
-    <NuxtLink to="/" class="ranking__link">
-      <button class="ranking__home">ホーム</button>
+  <div class="set">
+    <h2>設定ページ</h2>
+    <NuxtLink to="/" class="set__link">
+      <button class="set__home">ホーム</button>
     </NuxtLink>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.ranking {
+.set {
   text-align: center;
   background: $ui-main;
   height: 100vh;
