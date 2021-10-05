@@ -1,9 +1,10 @@
 <template>
   <div class="typing">
     <div class="typing__group">
-      <h2 class="typing__question">{{ questions[0] }}</h2>
-      <p class="typing__romanAlphabet">ローマ字</p>
+      <h2 class="typing__question">{{ questions[0].question }}</h2>
+      <p class="typing__romanAlphabet">{{ questions[0].romanAlphabet }}</p>
     </div>
+    <p class="typing__start">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">
       <button class="typing__home">ホーム</button>
     </NuxtLink>
@@ -15,9 +16,18 @@ export default {
   data() {
     return {
       questions: [
-        'test',
-        'apple',
-        'ppp'
+        {
+          question: "ここに問題",
+          romanAlphabet: "kokonimondai"
+        },
+        {
+          question: "無人島",
+          romanAlphabet: "mujinto"
+        },
+        {
+          question: "プログラミングは難しい",
+          romanAlphabet: "programinghamuzukasi"
+        },
       ]
     }
   },
@@ -39,6 +49,26 @@ export default {
 
   &__romanAlphabet {
     font-size: 20px;
+  }
+
+  &__start {
+    font-size: 20px;
+    margin-top: 100px;
+    animation: flash 2s linear infinite;
+
+    @keyframes flash {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.1;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
   }
 
   &__link {
