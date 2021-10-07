@@ -4,6 +4,7 @@
       <h2 class="typing__question">{{ questions[0].question }}</h2>
       <p class="typing__romanAlphabet">{{ questions[0].romanAlphabet }}</p>
     </div>
+    <input class="typing__form" v-model="typeBox" type="text">
     <p class="typing__start">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">
       <button class="typing__home">ホーム</button>
@@ -15,6 +16,7 @@
 export default {
   data() {
     return {
+      typeBox: "",
       questions: [
         {
           question: "ここに問題",
@@ -31,7 +33,17 @@ export default {
       ]
     }
   },
-  mounted() {}
+  mounted() {
+
+  },
+  watch: {
+      typeBox(e) {
+        if (e == this.questions[0].romanAlphabet) {
+          alert("test")
+          console.log("test")
+        }
+      }
+    }
 }
 </script>
 
@@ -51,6 +63,11 @@ export default {
     font-size: 20px;
   }
 
+  &__form {
+    background: $font-gray;
+    border-bottom: 2px solid #000;
+  }
+
   &__start {
     font-size: 20px;
     margin-top: 100px;
@@ -62,7 +79,7 @@ export default {
       }
 
       50% {
-        opacity: 0.1;
+        opacity: 0.3;
       }
 
       100% {
