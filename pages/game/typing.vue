@@ -33,17 +33,27 @@ export default {
       ]
     }
   },
-  mounted() {
-
-  },
-  watch: {
-      typeBox(e) {
-        if (e == this.questions[0].romanAlphabet) {
-          alert("test")
-          console.log("test")
-        }
+  methods: {
+    gameStart(event) {
+      if(event.code === "Enter") {
+        alert("test")
+        console.log("test")
+      } else {
+        console.log("失敗")
       }
     }
+  },
+  mounted() {
+    document.addEventListener('keydown', this.gameStart);
+  },
+  watch: {
+    typeBox(e) {
+      if (e == this.questions[0].romanAlphabet) {
+        alert("ゲームスタート")
+        console.log("test")
+      }
+    },
+  }
 }
 </script>
 
