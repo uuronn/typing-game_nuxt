@@ -1,11 +1,11 @@
 <template>
   <div class="typing">
-    <div class="typing__group">
+    <div class="typing__group" v-if="isShow">
       <h2 class="typing__question">{{ questions[0].question }}</h2>
       <p class="typing__romanAlphabet">{{ questions[0].romanAlphabet }}</p>
+      <input class="typing__form" v-model="typeBox" type="text">
     </div>
-    <input class="typing__form" v-model="typeBox" type="text">
-    <p class="typing__start">Enterキーを押してスタート</p>
+    <p class="typing__start" v-if="isEnterClose">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">
       <button class="typing__home">ホーム</button>
     </NuxtLink>
@@ -16,6 +16,8 @@
 export default {
   data() {
     return {
+      isShow: false,
+      isEnterClose: true,
       typeBox: "",
       questions: [
         {
@@ -23,23 +25,24 @@ export default {
           romanAlphabet: "kokonimondai"
         },
         {
-          question: "無人島",
-          romanAlphabet: "mujinto"
+          question: "テスト",
+          romanAlphabet: "tesuto"
         },
         {
           question: "プログラミングは難しい",
-          romanAlphabet: "programinghamuzukasi"
+          romanAlphabet: "puroguraminguhamuzukasii"
         },
       ]
     }
   },
   methods: {
     gameStart(event) {
-      if(event.code === "Enter") {
-        alert("test")
+      if(event.code === "Enter" && this.isEnterClose === true) {
+        this.isShow = true;
+        this.isEnterClose = false;
         console.log("test")
       } else {
-        console.log("失敗")
+        console.log('ゲーム中')
       }
     }
   },
@@ -49,7 +52,7 @@ export default {
   watch: {
     typeBox(e) {
       if (e == this.questions[0].romanAlphabet) {
-        alert("ゲームスタート")
+        alert("test")
         console.log("test")
       }
     },
@@ -103,10 +106,6 @@ export default {
     z-index: 1;
     top: 0;
     right: 0;
-  }
-
-  &__home {
-    
   }
 }
 </style>

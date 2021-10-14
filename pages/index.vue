@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <main class="container">
     <VStart/>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
