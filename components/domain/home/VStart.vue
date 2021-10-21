@@ -1,22 +1,28 @@
 <template>
   <div class="start">
     <h1 class="start__title">タイピングげーむ</h1>
-    <div class="start__buttons">
-      <NuxtLink to="/game/typing">
-        <button class="start__button">
-          はじめる
-        </button>
-      </NuxtLink>
-      <NuxtLink to="/result/ranking">
-        <button class="start__button">
-          ランキング
-        </button>
-      </NuxtLink>
-      <NuxtLink to="/setting/set">
-        <button class="start__button">
-          設定
-        </button>
-      </NuxtLink>
+    <div class="start__container">
+      <div class="start__wrapper">
+        <NuxtLink to="/game/typing">
+          <button class="start__button">
+            はじめる
+          </button>
+        </NuxtLink>
+      </div>
+      <div class="start__wrapper">
+        <NuxtLink to="/result/ranking">
+          <button class="start__button">
+            ランキング
+          </button>
+        </NuxtLink>
+      </div>
+      <div class="start__wrapper">
+        <NuxtLink to="/setting/set">
+          <button class="start__button">
+            設定
+          </button>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 .start {
   text-align: center;
-  background: $ui-main;
+  background: #674598;
   height: 100vh;
   padding: 10px;
 
@@ -46,7 +52,7 @@ export default {
     font-size: 80px;
   }
 
-  &__buttons {
+  &__container {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -54,22 +60,51 @@ export default {
     gap: 10px;
   }
 
-  &__button {
-    padding: 10px 0;
-    border: 2px solid #000;
-    border-radius: 10px;
-    box-shadow: 5px 5px 0;
-    font-size: 50px;
-    color: $font-main;
-    background: $ui-white;
-    transition: 0.3s;
-    width: 100%;
+  &__wrapper {
+    position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  overflow: hidden;
+  border-radius: 20px;
 
-    &:hover {
-      box-shadow: 0 0 0;
-      transition: 0.3s;
-      background: $ui-gray;
+  
+  &:hover:before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 30%;
+    background: linear-gradient(#00ccff, #d400d4);
+
+    animation: animate 4s linear infinite;
+    
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: $ui-gray;
+    border-radius: 18px;
+  }
+
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
     }
+    100% {
+      transform: rotate(720deg);
+    }
+  }
+  }
+
+  &__button {
+    position: relative;
+    z-index: 10;
+    font-size: 30px;
   }
 }
 </style>

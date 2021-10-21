@@ -4,6 +4,7 @@
       <h2 class="typing__question">{{ questions[0].question }}</h2>
       <p class="typing__romanAlphabet">{{ questions[0].romanAlphabet }}</p>
       <input class="typing__form" v-model="typeBox" type="text">
+      <div class="typing__background" id="keyDown"></div>
     </div>
     <p class="typing__start" v-if="isEnterClose">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">
@@ -44,14 +45,27 @@ export default {
       } else {
         console.log('ゲーム中')
       }
+    },
+    typeShow(e) {
+      const keyCode = e.code;
+      console.log(e.code);
+      if (e.code === "Enter") {
+        console.log("Enter押しました")
+      } else {
+        let keyDown = document.getElementById('keyDown');
+        const myCode = String.fromCharCode(keyCode);
+        let myCodeLower = myCode.toLowerCase();
+        keyDown.innerHTML += myCodeLower;
+      }
     }
   },
   mounted() {
     document.addEventListener('keydown', this.gameStart);
+    document.addEventListener('keydown', this.typeShow);
   },
   watch: {
     typeBox(e) {
-      if (e == this.questions[0].romanAlphabet) {
+      if (e === this.questions[0].romanAlphabet) {
         alert("test")
         console.log("test")
       }
@@ -79,6 +93,10 @@ export default {
   &__form {
     background: $font-gray;
     border-bottom: 2px solid #000;
+  }
+
+  &__background {
+    background: green;
   }
 
   &__start {
