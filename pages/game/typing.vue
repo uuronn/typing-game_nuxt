@@ -1,10 +1,12 @@
 <template>
   <div class="typing">
     <div class="typing__group" v-if="isShow">
-      <h2 class="typing__question">{{ typeBox }}</h2>
-      <p class="typing__romanAlphabet">{{ typeBox }}</p>
+      <h2 class="typing__question">{{ question }}</h2>
+      <!-- <p class="typing__romanAlphabet">{{ question }}</p> -->
       <input class="typing__form" type="text">
       <div class="typing__background" id="keyDown"></div>
+      <p class="typing"><span>{{pressed}}</span>{{question}}</p>
+      <p>ミスの数は{{missNumber}}</p>  
     </div>
     <p class="typing__start" v-if="isEnterOpen">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">
@@ -21,7 +23,9 @@ export default {
     return {
       isShow: false,
       isEnterOpen: true,
-      typeBox: '',
+      question: '',
+      pressed: "",
+      missNumber: '',
       questions: [
         "banana",
         "test",
@@ -53,22 +57,33 @@ export default {
       }
     },
     setWord() {
-      this.typeBox = this.questions[Math.floor(Math.random()*this.questions.length)];
+      this.question = this.questions.splice(Math.floor(Math.random()*this.questions.length),1)[0];
+    },
+    keyDown(){
+      addEventListener('keydown',e => {
+        if(e.key !== this.question[0]){
+          this.missNumber ++;
+          return;
+        }
+        this.pressed += e.key;
+        this.question = this.question.slice(1);
+        if(this.question.length == 0) {
+          this.pressed = '';
+          this.setWord();
+          if(this.questions.length == 0) {
+            this.question = '終了です';
+            return;
+          }
+        }
+      });
     }
   },
   mounted() {
+    this.keyDown();
     this.setWord();
     addEventListener('keydown', this.gameStart);
     addEventListener('keydown', this.typeShow);
   },
-  watch: {
-    typeBox(e) {
-      if (e === this.questions[0].romanAlphabet) {
-        alert("test")
-        console.log("test")
-      }
-    },
-  }
 }
 </script>
 
@@ -169,6 +184,10 @@ export default {
     z-index: 10;
     font-size: 18px;
     color: #000;
+  }
+
+  span {
+    color: red;
   }
 }
 </style>
