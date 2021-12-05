@@ -1,12 +1,12 @@
 <template>
   <div class="typing">
     <div class="typing__group" v-if="isShow">
-      <h2 class="typing__question">{{ questions[0].question }}</h2>
-      <p class="typing__romanAlphabet">{{ questions[0].romanAlphabet }}</p>
-      <input class="typing__form" v-model="typeBox" type="text">
+      <h2 class="typing__question">{{ typeBox }}</h2>
+      <p class="typing__romanAlphabet">{{ typeBox }}</p>
+      <input class="typing__form" type="text">
       <div class="typing__background" id="keyDown"></div>
     </div>
-    <p class="typing__start" v-if="isEnterClose">Enterキーを押してスタート</p>
+    <p class="typing__start" v-if="isEnterOpen">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">
       <div class="typing__wrapper">
         <button class="typing__home">ホーム</button>
@@ -20,27 +20,19 @@ export default {
   data() {
     return {
       isShow: false,
-      isEnterClose: true,
-      typeBox: "",
+      isEnterOpen: true,
+      typeBox: '',
       questions: [
-        {
-          question: "ここに問題",
-          romanAlphabet: "kokonimondai"
-        },
-        {
-          question: "テスト",
-          romanAlphabet: "tesuto"
-        },
-        {
-          question: "プログラミングは難しい",
-          romanAlphabet: "puroguraminguhamuzukasii"
-        },
+        "banana",
+        "test",
+        "meron",
+        "Ruby"
       ]
     }
   },
   methods: {
     gameStart(event) {
-      if(event.code === "Enter" && this.isEnterClose === true) {
+      if(event.code === "Enter" && this.isEnterOpen === true) {
         this.isShow = true;
         this.isEnterClose = false;
         console.log("test")
@@ -52,18 +44,22 @@ export default {
       const keyCode = e.code;
       console.log(e.code);
       if (e.code === "Enter") {
-        console.log("Enter押しました")
+        this.isEnterOpen = false;
       } else {
         let keyDown = document.getElementById('keyDown');
         const myCode = String.fromCharCode(keyCode);
         let myCodeLower = myCode.toLowerCase();
         keyDown.innerHTML += myCodeLower;
       }
+    },
+    setWord() {
+      this.typeBox = this.questions[Math.floor(Math.random()*this.questions.length)];
     }
   },
   mounted() {
-    document.addEventListener('keydown', this.gameStart);
-    document.addEventListener('keydown', this.typeShow);
+    this.setWord();
+    addEventListener('keydown', this.gameStart);
+    addEventListener('keydown', this.typeShow);
   },
   watch: {
     typeBox(e) {
@@ -103,7 +99,7 @@ export default {
 
   &__start {
     font-size: 20px;
-    margin-top: 100px;
+    margin-top: 300px;
     animation: flash 2s linear infinite;
 
     @keyframes flash {

@@ -28,7 +28,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -75,7 +74,6 @@ export default {
     overflow: hidden;
     border-radius: 20px;
 
-  
     &:hover:before {
       content: '';
       position: absolute;
