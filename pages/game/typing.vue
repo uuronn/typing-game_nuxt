@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { questions } from './question'
+
 export default {
   data() {
     return {
@@ -26,12 +28,7 @@ export default {
       question: '',
       pressed: "",
       missNumber: '',
-      questions: [
-        "banana",
-        "test",
-        "meron",
-        "Ruby"
-      ]
+      questions: questions
     }
   },
   methods: {
