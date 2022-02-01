@@ -28,14 +28,17 @@ export default {
       question: '',
       pressed: "",
       missNumber: '',
-      questions: questions
+      questions: questions,
+      timer: 3000
     }
   },
   methods: {
     gameStart(event) {
       if(event.code === "Enter" && this.isEnterOpen === true) {
-        this.isShow = true;
-        this.isEnterClose = false;
+        setTimeout(() => {
+          this.isShow = true;
+          this.isEnterClose = false;
+        }, this.timer)
         console.log("test")
       } else {
         console.log('ゲーム中')
