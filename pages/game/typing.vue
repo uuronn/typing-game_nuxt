@@ -6,7 +6,7 @@
       <input class="typing__form" type="text">
       <div class="typing__background" id="keyDown"></div>
       <p class="typing"><span>{{pressed}}</span>{{question}}</p>
-      <p>ミスの数は{{missNumber}}</p>  
+      <p>ミスの数は{{missNumber}}</p>
     </div>
     <p class="typing__start" v-if="isEnterOpen">Enterキーを押してスタート</p>
     <NuxtLink to="/" class="typing__link">

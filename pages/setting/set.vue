@@ -2,7 +2,9 @@
   <div class="set">
     <h2>設定ページ</h2>
     <NuxtLink to="/" class="set__link">
-      <button class="set__home">ホーム</button>
+      <div class="set__wrapper">
+        <button class="set__home">ホーム</button>
+      </div>
     </NuxtLink>
   </div>
 </template>
@@ -10,7 +12,7 @@
 <style lang="scss" scoped>
 .set {
   text-align: center;
-  background: $ui-main;
+  background: #674598;
   height: 100vh;
   padding: 10px;
 
@@ -19,6 +21,53 @@
     z-index: 1;
     top: 0;
     right: 0;
+    text-decoration: none;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+    overflow: hidden;
+    border-radius: 10px;
+
+  
+    &:hover:before {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 30%;
+      background: linear-gradient(#00ccff, #d400d4);
+      animation: animate 4s linear infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      background: $ui-gray;
+      border-radius: 7px;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(720deg);
+      }
+    }
+  }
+
+  &__home {
+    position: relative;
+    z-index: 10;
+    font-size: 18px;
+    color: #000;
   }
 }
 </style>
