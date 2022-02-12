@@ -6,7 +6,6 @@
   </NuxtLink>
 </template>
 
-
 <style lang="scss" scoped>
 .home {
   position: absolute;
