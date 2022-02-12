@@ -1,5 +1,6 @@
 <template>
   <div class="typing">
+    <p>{{ showTimer }}秒後に開始</p>
     <div class="typing__group" v-if="isShow">
       <h2 class="typing__question">{{ question }}</h2>
       <!-- <p class="typing__romanAlphabet">{{ question }}</p> -->
@@ -25,7 +26,8 @@ export default {
       pressed: "",
       missNumber: '',
       questions: questions,
-      timer: 3000
+      timer: 1000,
+      showTimer: 1
     }
   },
   methods: {
@@ -34,6 +36,7 @@ export default {
         setTimeout(() => {
           this.isShow = true;
           this.isEnterClose = false;
+          this.showTimer--;
         }, this.timer)
         console.log("test")
       } else {
