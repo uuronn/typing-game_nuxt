@@ -1,6 +1,6 @@
 <template>
   <div class="typing">
-    <p>{{ showTimer }}秒後に開始</p>
+    <p>{{ timer }}秒後に開始</p>
     <div class="typing__group" v-if="isShow">
       <h2 class="typing__question">{{ question }}</h2>
       <!-- <p class="typing__romanAlphabet">{{ question }}</p> -->
@@ -26,18 +26,27 @@ export default {
       pressed: "",
       missNumber: '',
       questions: questions,
-      timer: 1000,
-      showTimer: 1
+      timer: 3,
+      showTimer: 1,
+      timerObj: null,
+      timerOn: false
     }
   },
   methods: {
+    count() {
+      if (this.timer > 0) {
+        this.timer --;
+      } else {
+        this.isShow = true
+        this.isEnterOpen = false
+      }
+    },
     gameStart(event) {
       if(event.code === "Enter" && this.isEnterOpen === true) {
-        setTimeout(() => {
-          this.isShow = true;
-          this.isEnterClose = false;
-          this.showTimer--;
-        }, this.timer)
+        this.timerObj = setInterval(() => {
+          this.count()
+        }, 1000)
+        this.timerOn=true;
         console.log("test")
       } else {
         console.log('ゲーム中')
